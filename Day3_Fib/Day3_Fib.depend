@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1541831109 source:d:\c&c++\training\day3_fib\main.c
+	<stdio.h>
+	<stdlib.h>
+
