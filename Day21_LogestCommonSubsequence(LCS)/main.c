@@ -1,7 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int lcs_fn( char *str1,char *str2,int str1_len,int str2_len )
+int lcs_recursive( char *str1, char *str2, int str1_len, int str2_len )
+{
+   if (str1_len == 0 || str2_len == 0)
+     return 0;
+   if (str1[str1_len-1] == str2[str2_len-1])
+     return 1 + lcs_recursive(str1, str2, str1_len-1, str2_len-1);
+   else
+     return max(lcs_recursive(str1, str2, str1_len, str2_len-1), lcs_recursive(str1, str2, str1_len-1, str2_len));
+}
+
+
+/*int lcs_fn( char *str1,char *str2,int str1_len,int str2_len )
 {
    int Lenght[str1_len+1][str2_len+1];
    int i, j;
@@ -21,7 +32,7 @@ int lcs_fn( char *str1,char *str2,int str1_len,int str2_len )
      }
    }
    return Lenght[str1_len][str2_len];
-}
+}*/
 
 int max(int a, int b)
 {
@@ -36,7 +47,8 @@ int main()
   int str1_len = strlen(str1);
   int str2_len = strlen(str2);
 
-  printf("The length of LCS is %d\n", lcs_fn( str1, str2, str1_len, str2_len ) );
+  printf("The length of LCS_Recursive is %d\n", lcs_recursive( str1, str2, str1_len, str2_len ) );
+  //printf("The length of LCS_Dynamic is %d\n", lcs_fn( str1, str2, str1_len, str2_len ) );
 
   return 0;
 }
